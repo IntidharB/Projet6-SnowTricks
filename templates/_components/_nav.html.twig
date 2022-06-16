@@ -1,0 +1,43 @@
+{# <header>
+    <!-- BLOC HEADER -->
+    
+        {% block header %} #}
+
+<nav class="navbar navbar-expand-lg bg-light">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">
+			<img src="assets/img/snow-logo1.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+			SnowTricks
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+			<ul class="navbar-nav">
+		
+			{% if app.user %}
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+				</li>
+			{% else %}	
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{{ path('app_page') }}">Acueil</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Triks</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+				</li>
+
+			{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>
+{# {% endblock %}
+</header> #}
