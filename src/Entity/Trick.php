@@ -3,11 +3,15 @@
 namespace App\Entity;
 
 use App\Repository\TrickRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: TrickRepository::class)]
+#[ORM\HasLifecycleCallbacks]
+#[UniqueEntity('name')]
 class Trick
 {
     #[ORM\Id]
@@ -66,9 +70,10 @@ class Trick
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    #[ORM\PrePersist]
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new DateTimeImmutable();
 
         return $this;
     }
