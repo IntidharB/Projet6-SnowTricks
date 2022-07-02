@@ -1,7 +1,47 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Tricks/{{app_trick_name}}{% endblock %}
+
 {% block body %}
 
-Coucou
-{{  dump(trick) }}
+<div>
+	<img src="assets/img/snow-Acc.png" alt="">
+</div>
+<div class="container">
+
+
+
+	<div class="">
+		<img src="assets/img/snow-logo.png" class="card-img-top" alt="...">
+		<div class="">
+			<h1>{{app_trick_name}}</h1>
+			<p>{{app_trick_description }}</p>
+			<div class="d-flex justify-content-evenly">
+				<h5><span>Catégorie:{#{app_trick_categorie}#}</span></h5>
+				<h5><span>Auteur:{#{app_trick_auteur}#}</span></h5>
+				<h5><span>Date de création:{#{app_trick_created_at}#}</span></h5>
+
+				<div class="">
+					{% if app.user %}
+					<a href="{{ path('app_trick_edit',{name:app_trick_name})}}" class="text-success me-2"><i
+							class="fa-solid fa-pencil"></i>Modifier</a>
+					<a href="{{ path('app_trick_delete',{name:app_trick_name})}}" class="text-danger"><i
+							class="fa-solid fa-trash-can"></i>Supprimer</a>
+					{% endif %}
+				</div>
+			</div>
+			<dir>
+				
+				{% if app.user %}
+
+				{% else %}Veuillez vous connecter pour laisser un message.
+				{% endif %}
+				
+			</dir>
+		</div>
+	</div>
+
+
+
+</div>
 {% endblock %}
